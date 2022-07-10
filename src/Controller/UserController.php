@@ -9,15 +9,32 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-    #[Route('/user', name: 'app.user')]
+    #[Route('/user', name: 'user')]
     public function index(): Response
     {
+        $users = [
+            [
+                'firstname' => 'Esteban',
+                'lastname' => 'Ristich',
+                'age' => 21
+            ],
+            [
+                'firstname' => 'Martin',
+                'lastname' => 'Durand',
+                'age' => 58
+            ],
+            [
+                'firstname' => 'Geremy',
+                'lastname' => 'Cavelin',
+                'age' => 13
+            ]
+        ];
         return $this->render('user/index.html.twig', [
-            'user_name' => 6
+            'users' => $users
         ]);
     }
 
-    #[Route('/user/{name}', name: 'app.user.view')]
+    #[Route('/user/{name}', name: 'user.view')]
     public function userView(Request $req, string $name): Response
     {
         dd($req);
